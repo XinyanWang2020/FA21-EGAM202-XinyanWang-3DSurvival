@@ -1,0 +1,4 @@
+repository "Landscape prototype@ssl://wechat_os_qy0832bhfpxhwojfkqisgdkkg@sh03-plasticscm.unity.cn:8787"
+  path "/"
+    smartbranch "/main/w2574033675" 
+     
