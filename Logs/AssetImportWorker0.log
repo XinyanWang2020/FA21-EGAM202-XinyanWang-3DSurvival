@@ -201,3 +201,28 @@ Received Import Request.
 Start importing Assets/TerrainLayers/NewLayer 3.terrainlayer using Guid(097da7dab4eb89a4e87c6d71baddbecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0510996d78a50dfc0c8650779f5beac') in 0.015633 seconds 
   Import took 0.018442 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 435.380365 seconds.
+  path: Assets/New Terrain 1.asset
+  artifactKey: Guid(d2cf307e5b6fa484a8885ebdd2b348a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Terrain 1.asset using Guid(d2cf307e5b6fa484a8885ebdd2b348a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffcca4ce4360d4b82ea6caf48adc9b39') in 0.037361 seconds 
+  Import took 0.040671 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003055 seconds.
+  path: Assets/New Terrain 1.asset
+  artifactKey: Guid(d2cf307e5b6fa484a8885ebdd2b348a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Terrain 1.asset using Guid(d2cf307e5b6fa484a8885ebdd2b348a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffcca4ce4360d4b82ea6caf48adc9b39') in 0.022925 seconds 
+  Import took 0.025020 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 593.418663 seconds.
+  path: Assets/TerrainLayers/NewLayer 4.terrainlayer
+  artifactKey: Guid(9f8cb1bd93374704a9165d4c65b7d869) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TerrainLayers/NewLayer 4.terrainlayer using Guid(9f8cb1bd93374704a9165d4c65b7d869) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92dc875af22cb13a4aec636147144ea4') in 0.019789 seconds 
+  Import took 0.022859 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
