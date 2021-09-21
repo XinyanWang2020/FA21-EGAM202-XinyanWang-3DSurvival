@@ -19,9 +19,9 @@ public class OpenDoor : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(BoxCollider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.BoxCollider")
+        if (other.CompareTag("Player"))
         {
             anim.SetTrigger("Open");
         }
