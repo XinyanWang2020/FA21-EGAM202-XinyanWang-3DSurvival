@@ -10,7 +10,7 @@ public class OpenDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GameObject.Find("Door").GetComponent<Animator>();
     }
 
     // Update is called once per frame

@@ -456,6 +456,7 @@ GameObject:
   - component: {fileID: 458506295}
   - component: {fileID: 458506296}
   - component: {fileID: 458506300}
+  - component: {fileID: 458506301}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -571,6 +572,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &458506301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458506294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd821bb51976f4458ce0d2e85ea0bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 458506294}
 --- !u!1 &475979090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1282,6 @@ GameObject:
   - component: {fileID: 1660179013}
   - component: {fileID: 1660179012}
   - component: {fileID: 1660179010}
-  - component: {fileID: 1660179015}
   - component: {fileID: 1660179014}
   m_Layer: 0
   m_Name: Door
@@ -1375,19 +1388,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1660179015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660179008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd821bb51976f4458ce0d2e85ea0bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: {fileID: 458506294}
 --- !u!1 &1705875330
 GameObject:
   m_ObjectHideFlags: 0
