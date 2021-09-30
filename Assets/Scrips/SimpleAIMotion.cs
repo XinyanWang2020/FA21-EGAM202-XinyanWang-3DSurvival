@@ -81,7 +81,7 @@ public class SimpleAIMotion : MonoBehaviour
 
         if(asCloseAsPossible)
         {
-            Debug.Log("Is as close as possible, and finding a new place to go");
+            //Debug.Log("Is as close as possible, and finding a new place to go");
             Vector3 randomStep = MaxStepSize * Random.onUnitSphere;
             DestinationMarker.transform.position = transform.position + randomStep;
             thisNavMeshAgent.SetDestination(DestinationMarker.transform.position);
