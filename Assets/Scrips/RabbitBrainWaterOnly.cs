@@ -9,6 +9,7 @@ public class RabbitBrainWaterOnly : MonoBehaviour
     {
         DecidingWhatToDoNext,
         SeekingWater, MovingToWater,DrinkingTillFull,
+        SeekingFood, MovingToFood, EattingTillFull,
         Resting,
     }
 
