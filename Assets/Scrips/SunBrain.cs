@@ -18,7 +18,7 @@ public class SunBrain : MonoBehaviour
     private Collider[] sunfieldHits;
     void Start()
     {
-        anim = GameObject.Find("Sunfiled").GetComponent<Animator>();
+        anim = GameObject.Find("SunfiledPrefab").GetComponent<Animator>();
 
         float terrinHeight = GameObject.Find("Terrain").GetComponent<Terrain>().SampleHeight(transform.position);
 
@@ -38,6 +38,8 @@ public class SunBrain : MonoBehaviour
         transform.position = new Vector3(transform.position.x, terrinHeight, transform.position.z);
 
         Food = SeedFood;
+
+        anim.SetTrigger("Restart");
     }
 
     // Update is called once per frame
@@ -104,11 +106,16 @@ public class SunBrain : MonoBehaviour
             randomNearbyPosition = transform.position + MaxDispersalDistance * Random.insideUnitSphere;
 
             //place a new sun at that place
-            Instantiate(SunfieldPrefab, randomNearbyPosition, Quaternion.identity, transform.parent);
+            GameObject newSunfield = Instantiate(SunfieldPrefab, randomNearbyPosition, Quaternion.identity, transform.parent);
+            newSunfield.GetComponent<SunBrain>().Food = SeedFood;
+            newSunfield.GetComponent<SunBrain>().Age = 0;
+
 
             //Lose food
             Food -= 2f * SeedFood;
-
+        }
+        if (Age > 40)
+        {
             currentState = SunfieldStateT.Flowering;
         }
     }
