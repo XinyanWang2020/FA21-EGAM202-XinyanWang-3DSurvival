@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - Water
+  - Food
   layers:
   - Default
   - TransparentFX

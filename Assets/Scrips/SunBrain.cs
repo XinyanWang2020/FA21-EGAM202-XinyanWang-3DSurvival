@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SunBrain : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
     public enum SunfieldStateT { Seed, Seeding, Adult, Grow, Flowering, Dead }
     public SunfieldStateT currentState;
 
