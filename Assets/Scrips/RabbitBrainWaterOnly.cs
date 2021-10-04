@@ -10,6 +10,7 @@ public class RabbitBrainWaterOnly : MonoBehaviour
         DecidingWhatToDoNext,
         SeekingWater, MovingToWater,DrinkingTillFull,
         SeekingFood, MovingToFood, EattingTillFull,
+        Clone,
         Resting,
     }
 
@@ -55,6 +56,19 @@ public class RabbitBrainWaterOnly : MonoBehaviour
             case RabbitStateT.DrinkingTillFull:
                 DrinkFromWater();
                 break;
+            case RabbitStateT.SeekingFood:
+                SeekFood();
+                break;
+            case RabbitStateT.MovingToFood:
+                //nothing need to do
+                break;
+            //case RabbitStateT.EattingTillFull:
+                //EatFromFood();
+                //break;
+            //case RabbitStateT.Clone:
+                //CloneItself();
+                //break;
+
 
             default:
                 throw new System.NotImplementedException("Whoops. Ran off the end of the case statement....");
@@ -97,5 +111,10 @@ public class RabbitBrainWaterOnly : MonoBehaviour
 
         if (Water > 100)
             currentState = RabbitStateT.DecidingWhatToDoNext;
+    }
+
+    public void SeekFood()
+    {
+
     }
 }

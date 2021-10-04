@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4750981413230509279}
   - component: {fileID: 4750981413230509251}
   - component: {fileID: 4108809333025943307}
-  - component: {fileID: 2651324590733311954}
+  - component: {fileID: 1077587649206782857}
   m_Layer: 7
   m_Name: SunfieldPrefab
   m_TagString: Food
@@ -139,7 +139,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2651324590733311954
+--- !u!114 &1077587649206782857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,6 +160,6 @@ MonoBehaviour:
   MaxFood: 60
   CrowdingDistance: 5
   MaxDispersalDistance: 10
-  BirthTime: 3
+  BirthTime: 0
   Age: 0
   SunfieldPrefab: {fileID: 4750981413230509278}
