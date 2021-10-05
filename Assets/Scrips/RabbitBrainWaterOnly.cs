@@ -62,12 +62,12 @@ public class RabbitBrainWaterOnly : MonoBehaviour
             case RabbitStateT.MovingToFood:
                 //nothing need to do
                 break;
-            //case RabbitStateT.EattingTillFull:
-                //EatFromFood();
-                //break;
-            //case RabbitStateT.Clone:
-                //CloneItself();
-                //break;
+            case RabbitStateT.EattingTillFull:
+                EatFromFood();
+                break;
+            case RabbitStateT.Clone:
+                CloneItself();
+                break;
 
 
             default:
@@ -83,12 +83,18 @@ public class RabbitBrainWaterOnly : MonoBehaviour
             return;
         }
 
+        if (Food < 50)
+        {
+            currentState = RabbitStateT.SeekingFood;
+            return;
+        }
+
     }
 
     public void SeekWater()
     {
-        GameObject[] wateryObjects = GameObject.FindGameObjectsWithTag("Water");
-        GameObject targetWateryObject = wateryObjects[0];
+        //GameObject[] wateryObjects = GameObject.FindGameObjectsWithTag("Water");
+        GameObject targetWateryObject = FindClosestObjectWithTag("Water");
         Debug.Log("Rabbit is going to" + targetWateryObject.name);
 
         //change state to "movingToWater"
@@ -98,10 +104,15 @@ public class RabbitBrainWaterOnly : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Rabbit EnterTrigger");
+        //Debug.Log("Rabbit EnterTrigger");
         if(currentState == RabbitStateT.MovingToWater && other.tag == "Water")
         {
             currentState = RabbitStateT.DrinkingTillFull;
+        }
+
+        if (currentState == RabbitStateT.MovingToFood && other.tag == "Food")
+        {
+            currentState = RabbitStateT.EattingTillFull;
         }
     }
 
@@ -115,6 +126,47 @@ public class RabbitBrainWaterOnly : MonoBehaviour
 
     public void SeekFood()
     {
+        GameObject targetFoodObject = FindClosestObjectWithTag("Food");
+
+        //change state to "movingToWater"
+        thisNavMeshAgent.SetDestination(targetFoodObject.transform.position);
+        currentState = RabbitStateT.MovingToFood;
+    }
+
+    public void EatFromFood()
+    {
+
+    }
+
+    public void CloneItself()
+    {
+
+    }
+
+    public GameObject FindClosestObjectWithTag(string tag)
+    {
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+        if (objectsWithTag.Length == 0)
+            return null;
+
+        GameObject closestObject = objectsWithTag[0];
+        float distanceToClosestObject = 1e6f,
+            distanceToCurrentObject;
+        for (int i = 0; i < objectsWithTag.Length; i++)
+        {
+            Vector3 vectorToCurrentObject;
+            GameObject currentObject;
+            currentObject = objectsWithTag[i];
+            vectorToCurrentObject = currentObject.transform.position - transform.position;
+            distanceToCurrentObject = vectorToCurrentObject.magnitude;
+            if (distanceToCurrentObject < distanceToClosestObject)
+            {
+                closestObject = objectsWithTag[i];
+                distanceToClosestObject = distanceToCurrentObject;
+            }
+        }
+        return closestObject;
 
     }
 }

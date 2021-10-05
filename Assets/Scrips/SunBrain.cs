@@ -18,7 +18,7 @@ public class SunBrain : MonoBehaviour
     private Collider[] sunfieldHits;
     void Start()
     {
-        anim = GameObject.Find("SunfiledPrefab").GetComponent<Animator>();
+        anim = GetComponent<Animator>();
 
         float terrinHeight = GameObject.Find("Terrain").GetComponent<Terrain>().SampleHeight(transform.position);
 
@@ -114,7 +114,7 @@ public class SunBrain : MonoBehaviour
             //Lose food
             Food -= 2f * SeedFood;
         }
-        if (Age > 40)
+        if (Age > 50)
         {
             currentState = SunfieldStateT.Flowering;
         }
