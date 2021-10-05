@@ -979,9 +979,11 @@ MonoBehaviour:
   WaterLostPerSecond: 1
   DrinkingSpeed: 10
   Food: 50
-  FoodLostPerSecond: 0
+  FoodLostPerSecond: 1
   EatingSpeed: 10
+  MaxDispersalDistance: 0
   currentState: 0
+  RabbitPrefab: {fileID: 0}
 --- !u!136 &434775289
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1030,7 +1032,9 @@ MonoBehaviour:
   Food: 50
   FoodLostPerSecond: 1
   EatingSpeed: 10
+  MaxDispersalDistance: 0
   currentState: 0
+  RabbitPrefab: {fileID: 0}
 --- !u!1 &442474413
 GameObject:
   m_ObjectHideFlags: 0

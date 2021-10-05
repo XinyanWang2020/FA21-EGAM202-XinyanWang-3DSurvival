@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RabbitBrain : MonoBehaviour
+public class RabbitBrainWaterOnly : MonoBehaviour
 {
     public enum RabbitStateT
     {
@@ -90,15 +90,10 @@ public class RabbitBrain : MonoBehaviour
             return;
         }
 
-        else if (Food < 50)
+        if (Food < 50)
         {
             currentState = RabbitStateT.SeekingFood;
             return;
-        }
-
-        else if (Food > 100 && Water > 80)
-        {
-            currentState = RabbitStateT.Clone;
         }
 
     }
@@ -156,17 +151,9 @@ public class RabbitBrain : MonoBehaviour
 
         randomNearbyPosition = transform.position + MaxDispersalDistance * Random.insideUnitSphere;
 
-        //place a new Rabbit at that place
-        GameObject newRabbit = Instantiate(RabbitPrefab, randomNearbyPosition, Quaternion.identity, transform.parent);
-        newRabbit.GetComponent<RabbitBrain>().Food = 50;
-
-        //lose some food
-        Food -= 80;
-
-        if (Food < 50)
-        {
-            currentState = RabbitStateT.DecidingWhatToDoNext;
-        }
+        //place a new sun at that place
+        GameObject newSunfield = Instantiate(RabbitPrefab, randomNearbyPosition, Quaternion.identity, transform.parent);
+        newSunfield.GetComponent<SunBrain>().Food = 50;
     }
 
     public GameObject FindClosestObjectWithTag(string tag)
