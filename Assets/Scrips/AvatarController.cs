@@ -8,6 +8,8 @@ public class AvatarController : MonoBehaviour
     public Animator thisAnimator;
     public UnityEngine.AI.NavMeshAgent thisNavMeshAgent;
 
+    public Item ItemInHands, ItemOnHead;
+
     public enum MovementStateT { StandStill, walking }
     public MovementStateT currentState;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RabbitBrainWaterOnly : MonoBehaviour
+public class RabbitBrain : MonoBehaviour
 {
     public enum RabbitStateT
     {
@@ -15,7 +15,7 @@ public class RabbitBrainWaterOnly : MonoBehaviour
     }
 
     public float Water = 50, WaterLostPerSecond = 1, DrinkingSpeed = 10;
-    public float Food = 50, FoodLostPerSecond = 1, EatingSpeed = 10;
+    public float Food = 80, FoodLostPerSecond = 1, EatingSpeed = 10;
     public float MaxDispersalDistance;
 
     public RabbitStateT currentState;
@@ -96,13 +96,19 @@ public class RabbitBrainWaterOnly : MonoBehaviour
             return;
         }
 
+        if(Food > 120 && Water > 80)
+        {
+            currentState = RabbitStateT.Clone;
+            return;
+        }
+
     }
 
     public void SeekWater()
     {
         //GameObject[] wateryObjects = GameObject.FindGameObjectsWithTag("Water");
         GameObject targetWateryObject = FindClosestObjectWithTag("Water");
-        Debug.Log("Rabbit is going to" + targetWateryObject.name);
+        //Debug.Log("Rabbit is going to" + targetWateryObject.name);
 
         //change state to "movingToWater"
         thisNavMeshAgent.SetDestination(targetWateryObject.transform.position);
@@ -127,7 +133,7 @@ public class RabbitBrainWaterOnly : MonoBehaviour
     {
         Water += DrinkingSpeed * Time.deltaTime;
 
-        if (Water > 100)
+        if (Water > 120)
             currentState = RabbitStateT.DecidingWhatToDoNext;
     }
 
@@ -135,14 +141,17 @@ public class RabbitBrainWaterOnly : MonoBehaviour
     {
         GameObject targetFoodObject = FindClosestObjectWithTag("Food");
 
-        //change state to "movingToWater"
+        //change state to "movingToFood"
         thisNavMeshAgent.SetDestination(targetFoodObject.transform.position);
         currentState = RabbitStateT.MovingToFood;
     }
 
     public void EatFromFood()
     {
+        Food += EatingSpeed * Time.deltaTime;
 
+        if (Food > 150)
+            currentState = RabbitStateT.DecidingWhatToDoNext;
     }
 
     public void CloneItself()
@@ -151,9 +160,17 @@ public class RabbitBrainWaterOnly : MonoBehaviour
 
         randomNearbyPosition = transform.position + MaxDispersalDistance * Random.insideUnitSphere;
 
-        //place a new sun at that place
-        GameObject newSunfield = Instantiate(RabbitPrefab, randomNearbyPosition, Quaternion.identity, transform.parent);
-        newSunfield.GetComponent<SunBrain>().Food = 50;
+        //place a new Rabbit at that place
+        GameObject newRabbit = Instantiate(RabbitPrefab, randomNearbyPosition, Quaternion.identity, transform.parent);
+        newRabbit.GetComponent<RabbitBrain>().Food = 50;
+
+        //lose some food
+        Food -= 80;
+
+        if(Food < 100)
+        {
+            currentState = RabbitStateT.DecidingWhatToDoNext;
+        }
     }
 
     public GameObject FindClosestObjectWithTag(string tag)
