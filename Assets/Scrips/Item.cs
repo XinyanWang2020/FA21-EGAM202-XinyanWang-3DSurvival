@@ -13,4 +13,9 @@ public virtual void Use()
     {
         Debug.Log("You try to wear your Generic Object, but it won't fit.");
     }
+
+    public virtual void Eat()
+    {
+        Debug.Log("You bite the Generic Object. Clank, it hurts your teeth");
+    }
 }

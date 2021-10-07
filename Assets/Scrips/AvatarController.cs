@@ -46,5 +46,40 @@ public class AvatarController : MonoBehaviour
         //Make animation speed match movement speed
         GetComponent<Animator>().SetFloat("WalkSpeed", .2f * thisNavMeshAgent.velocity.magnitude);
 
+        if(Input .GetKeyDown(KeyCode.G))
+        {
+            //if already holding a item, do nothing
+            if (ItemInHands != null)
+                Debug.Log("You can't get anything new, because your hands are full.");
+            else
+            {
+                //look for an item.
+                Collider[] overlappingItems;
+                //Make sure you adjust vectors to fit the size of your avatar
+                overlappingItems = Physics.OverlapBox(transform.position + 2 * Vector3.forward, 3 * Vector3.one, Quaternion.identity,
+                    LayerMask.GetMask("Item"));
+
+                //if no items found in front of you
+                if (overlappingItems.Length == 0)
+                    Debug.Log("There is no items in front of you.");
+                else
+                {
+                    //else handle pick up of item
+                    //if have an item in hand, drop it.
+                    if(ItemInHands != null)
+                    {
+                        ItemInHands.transform.SetParent(null);
+                        ItemInHands = null;
+                    }
+                    //then, pick up the first overlapping item
+                    ItemInHands = overlappingItems[0].GetComponent<Item>();
+                    ItemInHands.transform.SetParent(gameObject.transform);
+                    ItemInHands.transform.localPosition = new Vector3(0, 1, 1);
+                    Debug.Log("You picked up a " + ItemInHands.name);
+                }
+            }
+        }
+
+
     }
 }
