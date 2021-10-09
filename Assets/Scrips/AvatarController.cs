@@ -74,12 +74,49 @@ public class AvatarController : MonoBehaviour
                     //then, pick up the first overlapping item
                     ItemInHands = overlappingItems[0].GetComponent<Item>();
                     ItemInHands.transform.SetParent(gameObject.transform);
-                    ItemInHands.transform.localPosition = new Vector3(0, 1, 1);
+                    ItemInHands.transform.localPosition = new Vector3(0, 25, 1);
                     Debug.Log("You picked up a " + ItemInHands.name);
                 }
             }
         }
-
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            //if holding item, drop it.
+            if (ItemInHands != null)
+            {
+                //item will not stay in the air
+                ItemInHands.transform.localPosition = new Vector3(0, 0, 1);
+                ItemInHands.transform.SetParent(null);
+                Debug.Log("You drooped the" + ItemInHands.name);
+                ItemInHands = null;
+            }
+            else
+                Debug.Log("You can't drop an item, because you're not holding anything.");
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //if holding item, try to use it.
+            if (ItemInHands != null)
+                ItemInHands.GetComponent<Item>().Use();
+            else
+                Debug.Log("You can't use an item, because you're not holding anything.");
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            //if holding item, try to wear it.
+            if (ItemInHands != null)
+                ItemInHands.GetComponent<Item>().Wear();
+            else
+                Debug.Log("You can't wear an item, because you're not holdiing anything.");
+        }
+        if (Input .GetKeyDown(KeyCode.E))
+        {
+            //if holding item, try to wear it.
+            if (ItemInHands != null)
+                ItemInHands.GetComponent<Item>().Eat();
+            else
+                Debug.Log("You can't eat an item, because you're not holding anything.");
+        }
 
     }
 }
