@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Apple : Item
 {
+    public int currentItemIndex;
     public override void Eat()
     {
         //increase the size of the avatar
@@ -11,7 +12,7 @@ public class Apple : Item
         Debug.Log("You eat the apple, the world looks bigger, now you need to run faster.");
 
         //remove from avatar
-        transform.parent.GetComponent<AvatarController>().ItemInHands = null;
+        transform.parent.GetComponent<AvatarController>().Inventory[currentItemIndex] = null;
 
         //destroy itself
         Destroy(this.gameObject);

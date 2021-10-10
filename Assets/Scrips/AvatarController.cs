@@ -8,7 +8,10 @@ public class AvatarController : MonoBehaviour
     public Animator thisAnimator;
     public UnityEngine.AI.NavMeshAgent thisNavMeshAgent;
 
-    public Item ItemInHands, ItemOnHead;
+    public Item ItemOnHead;
+    public Item[] Inventory;
+    public int currentItemIndex;
+    //delte ItemInHand
 
     public enum MovementStateT { StandStill, walking }
     public MovementStateT currentState;
@@ -49,7 +52,7 @@ public class AvatarController : MonoBehaviour
         if(Input .GetKeyDown(KeyCode.G))
         {
             //if already holding a item, do nothing
-            if (ItemInHands != null)
+            if (Inventory[currentItemIndex] != null)
                 Debug.Log("You can't get anything new, because your hands are full.");
             else
             {
@@ -66,29 +69,30 @@ public class AvatarController : MonoBehaviour
                 {
                     //else handle pick up of item
                     //if have an item in hand, drop it.
-                    if(ItemInHands != null)
+                    if(Inventory[currentItemIndex] != null)
                     {
-                        ItemInHands.transform.SetParent(null);
-                        ItemInHands = null;
+                        Inventory[currentItemIndex].transform.SetParent(null);
+                        Inventory[currentItemIndex] = null;
                     }
                     //then, pick up the first overlapping item
-                    ItemInHands = overlappingItems[0].GetComponent<Item>();
-                    ItemInHands.transform.SetParent(gameObject.transform);
-                    ItemInHands.transform.localPosition = new Vector3(0, 25, 1);
-                    Debug.Log("You picked up a " + ItemInHands.name);
+                    Inventory[currentItemIndex] = overlappingItems[0].GetComponent<Item>();
+                    Inventory[currentItemIndex].transform.SetParent(gameObject.transform);
+                    Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 25, 1);
+                    Debug.Log("You picked up a " + Inventory[currentItemIndex].name);
                 }
             }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             //if holding item, drop it.
-            if (ItemInHands != null)
+            if (Inventory[currentItemIndex] != null)
             {
                 //item will not stay in the air
-                ItemInHands.transform.localPosition = new Vector3(0, 0, 1);
-                ItemInHands.transform.SetParent(null);
-                Debug.Log("You drooped the" + ItemInHands.name);
-                ItemInHands = null;
+                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 0, 1);
+
+                Inventory[currentItemIndex].transform.SetParent(null);
+                Debug.Log("You drooped the" + Inventory[currentItemIndex].name);
+                Inventory[currentItemIndex] = null;
             }
             else
                 Debug.Log("You can't drop an item, because you're not holding anything.");
@@ -96,27 +100,83 @@ public class AvatarController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //if holding item, try to use it.
-            if (ItemInHands != null)
-                ItemInHands.GetComponent<Item>().Use();
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].GetComponent<Item>().Use();
             else
                 Debug.Log("You can't use an item, because you're not holding anything.");
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             //if holding item, try to wear it.
-            if (ItemInHands != null)
-                ItemInHands.GetComponent<Item>().Wear();
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].GetComponent<Item>().Wear();
             else
                 Debug.Log("You can't wear an item, because you're not holdiing anything.");
         }
         if (Input .GetKeyDown(KeyCode.E))
         {
             //if holding item, try to wear it.
-            if (ItemInHands != null)
-                ItemInHands.GetComponent<Item>().Eat();
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].GetComponent<Item>().Eat();
             else
                 Debug.Log("You can't eat an item, because you're not holding anything.");
         }
+        if (Input .GetKeyDown(KeyCode.UpArrow))
+        {
+            //if holding an item, deactivate it.
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].gameObject.SetActive(false);
 
+            //shift to next inventory slot.
+            Debug.Log("You rearrange your inventory.");
+            currentItemIndex++;
+            if (currentItemIndex >= Inventory.Length)
+                currentItemIndex = 0;
+
+            //if there is an item in the slot,activate the item and place it in front of Avatar.
+            if (Inventory[currentItemIndex] != null)
+            {
+                Inventory[currentItemIndex].gameObject.SetActive(true);
+                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 25, 1);
+                Debug.Log("You're now holding a" + Inventory[currentItemIndex].name);
+            }
+            else
+                Debug.Log("You're now holding nothing.");
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            //if holding an item, deactivate it.
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].gameObject.SetActive(false);
+
+            //shift to next inventory slot.
+            Debug.Log("You rearrange your inventory.");
+            currentItemIndex--;
+            if (currentItemIndex < 0)
+                currentItemIndex = Inventory.Length - 1;
+
+            //if there is an item in the slot, activate the item and place it in front of Avatar.
+            if (Inventory[currentItemIndex] != null)
+            {
+                Inventory[currentItemIndex].gameObject.SetActive(true);
+                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 25, 1);
+                Debug.Log("You are now holding a" + Inventory[currentItemIndex].name);
+            }
+            else
+                Debug.Log("You are now holding nothing.");
+        }
+
+    }
+    private int FindLocationOfFirst(System.Type targetItemType)
+    {
+        //it's also another good example of a linear search.
+
+        for (int searchPosition=0; searchPosition < Inventory.Length; searchPosition++)
+        {
+            //this uses some fancy stuff. You can look up GetType and IsAssignableFrom if you like.
+            if (Inventory[searchPosition] != null && targetItemType.IsAssignableFrom(Inventory[searchPosition].GetType()))
+                return searchPosition;
+        }
+        return -1;
     }
 }

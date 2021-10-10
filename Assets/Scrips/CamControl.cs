@@ -40,32 +40,32 @@ public class CamControl : MonoBehaviour
         //ÒÆ¶¯
         dirVector3 = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Keypad5))
         {
             if (Input.GetKey(KeyCode.LeftShift)) dirVector3.z = 3;
             else dirVector3.z = 1;
         }
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.Keypad0))
         {
             if (Input.GetKey(KeyCode.LeftShift)) dirVector3.z = -3;
             else dirVector3.z = -1;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.Keypad4))
         {
             if (Input.GetKey(KeyCode.LeftShift)) dirVector3.x = -3;
             else dirVector3.x = -1;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.Keypad6))
         {
             if (Input.GetKey(KeyCode.LeftShift)) dirVector3.x = 3;
             else dirVector3.x = 1;
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.Keypad2))
         {
             if (Input.GetKey(KeyCode.LeftShift)) dirVector3.y = -3;
             else dirVector3.y = -1;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.Keypad8))
         {
             if (Input.GetKey(KeyCode.LeftShift)) dirVector3.y = 3;
             else dirVector3.y = 1;

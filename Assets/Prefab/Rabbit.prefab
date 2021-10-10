@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 836079284730142541}
   - component: {fileID: 836079284730142540}
   - component: {fileID: 836079284730142543}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ear1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,8 +109,7 @@ GameObject:
   - component: {fileID: 836079285169715558}
   - component: {fileID: 836079285169715556}
   - component: {fileID: 836079285169715559}
-  - component: {fileID: 836079285169715557}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +175,7 @@ MonoBehaviour:
   EatingSpeed: 10
   MaxDispersalDistance: 10
   currentState: 0
-  RabbitPrefab: {fileID: 0}
+  RabbitPrefab: {fileID: 836079285169715563}
 --- !u!54 &836079285169715556
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -203,31 +202,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 10.895098
-  m_Height: 21.790195
+  m_Radius: 12.904142
+  m_Height: 37.545006
   m_Direction: 1
-  m_Center: {x: 3.2397845, y: 5.8103757, z: 1.0393803}
---- !u!114 &836079285169715557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836079285169715563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283b7dcfc5bc3c44aa0561889d06ebf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Water: 50
-  WaterLostPerSecond: 0.5
-  DrinkingSpeed: 10
-  Food: 50
-  FoodLostPerSecond: 0.5
-  EatingSpeed: 10
-  MaxDispersalDistance: 0
-  currentState: 0
-  RabbitPrefab: {fileID: 836079285169715563}
+  m_Center: {x: 0.11406923, y: 1.0586764, z: -0.077290416}
 --- !u!1 &836079285398951265
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +218,7 @@ GameObject:
   - component: {fileID: 836079285398951069}
   - component: {fileID: 836079285398951068}
   - component: {fileID: 836079285398951071}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +314,8 @@ GameObject:
   - component: {fileID: 836079285493791047}
   - component: {fileID: 836079285493791046}
   - component: {fileID: 836079285493791049}
-  m_Layer: 0
+  - component: {fileID: 7136888013145075700}
+  m_Layer: 9
   m_Name: Ear1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,3 +399,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7136888013145075700
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836079285493791051}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
