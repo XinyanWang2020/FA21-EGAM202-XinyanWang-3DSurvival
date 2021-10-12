@@ -2672,7 +2672,7 @@ MonoBehaviour:
   currentItemIndex: 0
   Things: {fileID: 836079285169715563, guid: 6d2787a6c0b9419478cd3f69d4bef37f, type: 3}
   MagicPoints: 3
-  MaxDispersalDistance: 20
+  MaxDispersalDistance: 5
 --- !u!1 &821422693
 GameObject:
   m_ObjectHideFlags: 0
