@@ -33,6 +33,7 @@ public class Hammer : Item
             float terrainHeight = GameObject.Find("Terrain").GetComponent<Terrain>().SampleHeight(NearbyPosition);
 
             NearbyPosition = new Vector3(NearbyPosition.x, terrainHeight, NearbyPosition.z);
+            GameObject newRabbit = Instantiate(Things, NearbyPosition, Quaternion.identity);
             MagicPoints -= 1;
             Debug.Log("The magic from the hammer creates a new rabbit.");
         }
